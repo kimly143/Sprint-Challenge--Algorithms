@@ -14,3 +14,5 @@ Although this will probably break or fail if called with a negative number.
 ## Exercise II
 
 Use a binary search algorithm and start at the (0 + n) // 2 floor, if the egg does not break search higher floors and if the egg does break search lower floors. Continue this process until a single floor is found such that dropping an egg from that floor does not break and dropping an egg from that floor + 1 breaks
+
+The runtime complexity of a binary search is O(log n) since we cut our search space in half each pass.
