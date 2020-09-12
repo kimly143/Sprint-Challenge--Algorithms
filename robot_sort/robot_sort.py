@@ -92,12 +92,35 @@ class SortingRobot:
         """
         return self._light == "ON"
 
+    def __len__(self):
+        return len(self._list)
+
+    def __str__(self):
+        return f'Location: {self._position}, Holding: {self._item}'
+
     def sort(self):
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+        
+        # since we can't use variables we use zip and two related ranges
+        # the first range is from 0 to middle of the list
+        # the second range is from end to the middle of the list
+        # this zipped result gives us the position of already sorted values
+        for left, right in zip(range((len(self) // 2) + 1), range(len(self) - 1, (len(self) // 2) - 1, -1)):
+            self.swap_item()
+            while self._position < right:
+                self.move_right()
+                if self.compare_item() < 0:
+                    self.swap_item()
+            self.swap_item()
+
+            while self._position > left:
+                self.move_left()
+                if self.compare_item() is None or self.compare_item() > 0:
+                    self.swap_item()
+
+            self.move_right()
 
 
 if __name__ == "__main__":
